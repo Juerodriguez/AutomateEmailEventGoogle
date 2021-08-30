@@ -50,7 +50,7 @@ function enviarCalendario(candidato){
   }
 }
 
-function enviarCorreo(candidato) {
+function enviarCorreo(candidato, cont) {
  if (candidato.email == "") {
    return;}
  else if (candidato.emailEnviado == "true") return;
