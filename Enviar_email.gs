@@ -64,5 +64,5 @@ function enviarCorreo(candidato, cont) {
    htmlBody: mensaje 
   });
  var campo = "O" + cont;
- hoja.getRange(campo)..setValue("true");
+ hoja.getRange(campo).setValue("true");
 }
