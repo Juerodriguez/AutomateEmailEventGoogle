@@ -44,7 +44,6 @@ function enviarCalendario(candidato){
  let startDate = new Date("2021-08-01"); // Primera fecha en la que comienzan los eventos a consultar
  let endDate = new Date("2021-10-30"); // Ultima fecha en la que terminan los eventos a consultar
  let calEvents = calendar.getEvents(startDate, endDate);
- console.log(calEvents.length);
  for (var i = 0; i < calEvents.length; i++) {
    let event = calEvents[i];
    event.addGuest(candidato.email);
