@@ -16,10 +16,12 @@ function enviarCorreos_main() {
  libro.setActiveSheet(libro.getSheetByName("Prueba"));  // Nombre de hoja de calculo
  const hoja = SpreadsheetApp.getActiveSheet();
  const filas = hoja.getRange("A2:E500").getValues();
+ var cont = 0; 
   
  for (indiceFila in filas) {
    var candidato = crearCandidato(filas[indiceFila]);
-   enviarCorreo(candidato);
+   cont = cont + 1;
+   enviarCorreo(candidato, cont);
    enviarCalendario(candidato)   
   }
 }
@@ -30,7 +32,7 @@ function crearCandidato(datosFila) {
     nick: datosFila[0],
     nombre: datosFila[2],
     email: datosFila[4],
-    emailEnviado: datosFila[13],
+    emailEnviado: datosFila[14],
   };
   return candidato;
 }
@@ -52,7 +54,7 @@ function enviarCalendario(candidato){
 function enviarCorreo(candidato) {
  if (candidato.email == "") {
    return;}
- else if (candidato.emailEnviado == true) return;
+ else if (candidato.emailEnviado == "true") return;
  const plantilla = HtmlService.createTemplateFromFile('Plantilla_mensaje');  // Llenar con el nombre de la plantilla 
  plantilla.candidato = candidato;
  const mensaje = plantilla.evaluate().getContent();
@@ -62,5 +64,6 @@ function enviarCorreo(candidato) {
    subject: "Space Apps Challenge 2021",
    htmlBody: mensaje 
   });
- candidato.emailEnviado == true;
+ var campo = "O" + cont;
+ hoja.getRange(campo)..setValue("true");
 }
